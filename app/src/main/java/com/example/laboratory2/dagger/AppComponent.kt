@@ -1,6 +1,6 @@
 package com.example.laboratory2.dagger
 
-import com.example.laboratory2.CardsFragment
+import com.example.laboratory2.ViewModel
 import com.example.laboratory2.api.ApiService
 import com.example.laboratory2.dagger.repository.Repository
 import com.example.laboratory2.dagger.repository.RepositoryImpl
@@ -20,7 +20,7 @@ import retrofit2.create
     RepositoryModule::class])
 interface AppComponent {
     fun inject(repositoryImpl: RepositoryImpl)
-    fun inject(cardsFragment: CardsFragment)
+    fun inject(viewModel: ViewModel)
     fun apiService() : ApiService
     fun repository() : Repository
     fun useCase() : UseCase
