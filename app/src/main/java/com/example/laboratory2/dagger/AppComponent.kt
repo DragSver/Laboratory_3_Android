@@ -2,6 +2,8 @@ package com.example.laboratory2.dagger
 
 import com.example.laboratory2.ViewModel
 import com.example.laboratory2.api.ApiService
+import com.example.laboratory2.api.RetrofitApi
+import com.example.laboratory2.api.RetrofitApiImpl
 import com.example.laboratory2.dagger.repository.Repository
 import com.example.laboratory2.dagger.repository.RepositoryImpl
 import com.example.laboratory2.dagger.usecase.UseCase
@@ -21,20 +23,22 @@ import retrofit2.create
 interface AppComponent {
     fun inject(repositoryImpl: RepositoryImpl)
     fun inject(viewModel: ViewModel)
-    fun apiService() : ApiService
-    fun repository() : Repository
+//    fun apiService() : ApiService
+//    fun repository() : Repository
     fun useCase() : UseCase
 }
 
 @Module
-object NetworkModule  {
-    val API_URL = "https://develtop.ru/study/"
-
-    @Provides
-    fun provideApiService(): ApiService  = Retrofit.Builder()
-        .baseUrl(API_URL)
-        .addConverterFactory(GsonConverterFactory.create())
-        .build().create()
+abstract class NetworkModule  {
+//    val API_URL = "https://develtop.ru/study/"
+//
+//    @Provides
+//    fun provideApiService(): ApiService  = Retrofit.Builder()
+//        .baseUrl(API_URL)
+//        .addConverterFactory(GsonConverterFactory.create())
+//        .build().create()
+    @Binds
+    abstract fun bindRetrofitApi(retrofitApiImpl: RetrofitApiImpl) : RetrofitApi
 }
 
 @Module
